@@ -36,15 +36,15 @@ weekend_check        = day <= 5
 
 # Check if we have disabled crontab launcher for maintenance
 if enable_check == False:
-	print('crontab-enable file missing')
-	exit()
+    print('crontab-enable file missing')
+    exit()
 
 # Markets are open 8:30AM to 3:00PM Central Time Monday through Friday
 if weekend_check and market_open_check and market_close_check:
-	print('Updating inky pHat...')
-	os.system(dir + "inkyphat-stockmarket.py &")
+    print('Updating inky pHat...')
+    os.system(dir + "inkyphat-stockmarket.py &")
 else:
-	print('Stock Market is currently closed')
+    print('Stock Market is currently closed')
 
 
 #print("\n")

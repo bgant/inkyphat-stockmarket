@@ -40,11 +40,11 @@ apifile = dir + "apikey.txt"
 
 # Keep the apikey separate and away from the Github repo
 if os.path.isfile(apifile) and os.path.getsize(apifile) > 1:
-	apikey = str(open(apifile).read()).strip("\n")
+    apikey = str(open(apifile).read()).strip("\n")
 else:
-	print(apifile, "file is missing or is empty")
-	print("Get a free API key from https://www.alphavantage.co")
-	exit()
+    print(apifile, "file is missing or is empty")
+    print("Get a free API key from https://www.alphavantage.co")
+    exit()
 
 url="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apikey}".format(symbol=symbol, apikey=apikey)
 response = requests.get(url)
@@ -58,32 +58,32 @@ data = response.json()         # Convert response string data to json data
 
 price = data['Global Quote']['05. price']
 if len(str(price)) > 9: 
-	price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
+    price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
 else:
-	price = round(float(price),2)         # Round to two decimals on numbers less than 10000
-	price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
+    price = round(float(price),2)         # Round to two decimals on numbers less than 10000
+    price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
 
 change_percent = data['Global Quote']['10. change percent']
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 if float(change_percent) < 0:
-	text_colour = inkyphat.RED
-	plus_sign = ""
+    text_colour = inkyphat.RED
+    plus_sign = ""
 else:
-	text_colour = inkyphat.BLACK
-	plus_sign = "+"
+    text_colour = inkyphat.BLACK
+    plus_sign = "+"
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
-	icon = dir + "icon-storm.png"
+    icon = dir + "icon-storm.png"
 elif float(change_percent) < -1 :
-	icon = dir + "icon-rain.png"
+    icon = dir + "icon-rain.png"
 elif float(change_percent) < 0:
-	icon = ""
+    icon = ""
 elif float(change_percent) >= 2:
-	icon = dir + "icon-sun.png"
+    icon = dir + "icon-sun.png"
 else:
-	icon = ""
+    icon = ""
 
 change_percent = plus_sign + change_percent + "%"
 
@@ -118,7 +118,7 @@ inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_
 inkyphat.text((5, 5), symbol, inkyphat.BLACK, clock_image_size)
 
 if len(icon) > 0:   # Check that png file is specified before trying to display it
-	inkyphat.paste(Image.open(icon), (167, 5))
+    inkyphat.paste(Image.open(icon), (167, 5))
 
 inkyphat.show()
 
