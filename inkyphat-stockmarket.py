@@ -80,7 +80,7 @@ elif float(change_percent) < -1 :
 	icon = dir + "icon-rain.png"
 elif float(change_percent) < 0:
 	icon = ""
-elif float(change_percent) > 2:
+elif float(change_percent) >= 2:
 	icon = dir + "icon-sun.png"
 else:
 	icon = ""
