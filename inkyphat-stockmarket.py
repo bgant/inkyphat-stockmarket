@@ -39,7 +39,7 @@ apifile = dir + "apikey.txt"
 ##########################################################
 
 # Keep the apikey separate and away from the Github repo
-if os.path.isfile(apifile) and os.path.getsize(apifile) > 0:
+if os.path.isfile(apifile) and os.path.getsize(apifile) > 1:
 	apikey = str(open(apifile).read()).strip("\n")
 else:
 	print(apifile, "file is missing or is empty")
