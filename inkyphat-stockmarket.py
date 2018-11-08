@@ -27,7 +27,7 @@ inkyphat.set_colour('red')
 #	SPX   S&P 500 Index
 #	NYA   NASDAQ Composite Index
 # Which stock symbol do you want to watch?
-symbol = 'VTI'
+symbol = 'DJIA'
 
 # This is where you put your https://www.alphavantage.co API key
 dir = "/home/pi/inkyphat-stockmarket/"
