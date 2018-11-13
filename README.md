@@ -1,4 +1,4 @@
-# Display Stock Market Data on inky pHat / Raspberry Pi Zero W
+## Display Stock Market Data on inky pHat / Raspberry Pi Zero W
 
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
