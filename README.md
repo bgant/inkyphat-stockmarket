@@ -1,5 +1,6 @@
-# inkyphat-stockmarket
-Display Stock Market Data on inky pHat / Raspberry Pi Zero W
+# Display Stock Market Data on inky pHat / Raspberry Pi Zero W
+
+![Project Photo](../assets/inkyphat-stockmarket.png)
 
 To Do List:
 * Replace 'inkyphat.RED' statements with variable to handle inkyphat.YELLOW or inkyphat.BLACK
