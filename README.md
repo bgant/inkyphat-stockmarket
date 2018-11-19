@@ -2,6 +2,10 @@
 
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
+### How to Use:
+* inkyphat-stockmarket.py is the main script that downloads the latest stock price and displays it on the screen. You can manually run this script as often as you like.
+* inkyphat-stockmarket-launcher.py is run by /etc/crontab. It checks to see if the Stock Market is open before running the inkyphat-stockmarket.py script.
+
 ### To Do List:
 * Replace 'inkyphat.RED' statements with variable to handle inkyphat.YELLOW or inkyphat.BLACK
 * Add requirements.txt file for imports
