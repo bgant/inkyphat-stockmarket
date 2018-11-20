@@ -9,16 +9,19 @@
 # */5 *   * * 1-5 pi      /home/pi/inkyphat-stockmarket/inkyphat-stockmarket-launcher.py &
 #
 
+import os
+from datetime import datetime
+import pytz   # Python Timezones Module
+
 
 ##########################################################
 ###  Is this script currently enabled?
 ##########################################################
 
 # Check if we have disabled crontab launcher for maintenance
-import os
 enable_check = os.path.isfile(os.getcwd() + '/crontab-enable')
 if enable_check == False:
-    print('crontab-enable file missing')
+    print('Launcher is currently disabled... Exiting')
     exit()
 
 
@@ -35,9 +38,6 @@ if enable_check == False:
 # We'll let /etc/crontab make sure we are only running Monday through Friday.
 #
 
-from datetime import datetime
-import pytz   # Python Timezones Module
-
 # Instead of creating a multi-line "function", we can do the same thing with a single-line "lamba"
 isDST_now_in = lambda zonename: bool(datetime.now(pytz.timezone(zonename)).dst())
 
@@ -51,27 +51,23 @@ else:
    open  = 1530
    close = 2200
 
-# Are we currently between the market open and close times?
-now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
-#print(now)  # debugging
-if open < now < close:
-    market_open = True
-else:
-    market_open = False
-
 # Markets are closed all day on Saturday and Sunday
 day_of_the_week = int(datetime.utcnow().strftime("%u"))   # The day of the week range 1 to 7 with Monday being 1
-if day_of_the_week > 5:
-    market_open = False
+
+# Current hour and minute as an integer
+now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
 
 
 ##########################################################
 ### If the Stock Market is Open, run the main script
 ##########################################################
 
-if market_open:
+if open < now < close and day_of_the_week <= 5:
     print('Updating inky pHat...')
     os.system(os.getcwd() + "/inkyphat-stockmarket.py &")
 else:
     print('Stock Market is currently closed')
 
+
+#print('Current Time: ', now)
+#print('Day of Week:  ', day_of_the_week)
