@@ -44,30 +44,30 @@ isDST_now_in = lambda zonename: bool(datetime.now(pytz.timezone(zonename)).dst()
 # Are we currently in Daylight Savings or not?
 if isDST_now_in('America/New_York') == False:
    # Eastern Standard Time (EST) is UTC -05:00 (markets open 14:30 to 21:00 UTC)
-   open  = 1430 
-   close = 2100
+   market_open  = 1430 
+   market_close = 2100
 else:
    # Eastern Daylight Time (EDT) is UTC -04:00 (markets open 15:30 to 22:00 UTC)
-   open  = 1530
-   close = 2200
+   market_open  = 1530
+   market_close = 2200
 
 # Markets are closed all day on Saturday and Sunday
 day_of_the_week = int(datetime.utcnow().strftime("%u"))   # The day of the week range 1 to 7 with Monday being 1
 
 # Current hour and minute as an integer
-now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
+time_now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
 
 
 ##########################################################
 ### If the Stock Market is Open, run the main script
 ##########################################################
 
-if open < now < close and day_of_the_week <= 5:
+if market_open < time_now < market_close and day_of_the_week <= 5:
     print('Updating inky pHat...')
     os.system(os.getcwd() + "/inkyphat-stockmarket.py &")
 else:
     print('Stock Market is currently closed')
 
 
-#print('Current Time: ', now)
+#print('Current Time: ', time_now)
 #print('Day of Week:  ', day_of_the_week)
