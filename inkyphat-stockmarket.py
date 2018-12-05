@@ -56,6 +56,8 @@ data = response.json()         # Convert response string data to json data
 ###  Manipulate the string data  
 ##########################################################
 
+latest_trading_day = data['Global Quote']['07. latest trading day']
+
 price = data['Global Quote']['05. price']
 if len(str(price)) > 9: 
     price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
@@ -112,7 +114,8 @@ clock_font_size = 11
 clock_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, clock_font_size)
 clock_image_x = 150   # Max 212
 clock_image_y = 90    # Max 104
-time_stamp = str(datetime.datetime.now().strftime("%Y-%m-%d"))
+#time_stamp = str(datetime.datetime.now().strftime("%Y-%m-%d")) # Today's Date
+time_stamp = latest_trading_day # Stock's Last Trading Day
 inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_image_size)
 
 inkyphat.text((5, 5), symbol, inkyphat.BLACK, clock_image_size)
