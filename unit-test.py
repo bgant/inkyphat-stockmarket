@@ -1,14 +1,19 @@
 #!/usr/bin/python3
 print('\n')
 
-import AlphaVantage
+import alphavantage
 print('Looking up LMT at www.alphavantage.co...')
-print(AlphaVantage.lookup('LMT').data())
+lmt = alphavantage.lookup('LMT')
+print('data:', lmt.data())
+print('price:', lmt.price())
 print('\n')
 
-import AppleQuote
+import apple_finance
 print('Looking up AAPL at wu-quotes.apple.com...')
-print(AppleQuote.lookup('AAPL').data())
+aapl = apple_finance.lookup('AAPL')
+print('data:', aapl.data())
+print('price:', aapl.price())
+print('status:', aapl.status())
 print('\n')
 
 import stockmarket

@@ -60,21 +60,14 @@ class exchange:
         ###  Is this Stock Exchange REALLY open now?      
         ##########################################################
         #
-        # Use Apple Stock service to check if the Stock Market is actually open or not
+        # Use Apple Stock service to check if a Stock Exchange is actually open or not
         #    Source: https://stackoverflow.com/questions/9428989/how-to-test-if-the-stock-market-nyse-is-currently-open-closed
         #
 
         symbol = self.yaml['symbol']
 
-        import AppleQuote
-        results = AppleQuote.lookup(symbol).data()
-        #print(results)
-
-        # A "status" value of zero means the "exchange" for this "symbol" is closed
-        if int(results['status']) == 0:
-            return False
-        else:
-            return True
+        import apple_finance
+        return apple_finance.lookup(symbol).status()
 
 
 # This section allows you to run the module directly for testing
