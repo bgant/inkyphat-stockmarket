@@ -12,6 +12,7 @@ import requests  # Handles URL requests that return JSON data
 import datetime
 import os.path
 
+base_dir = '/home/pi/inkyphat-stockmarket/'
 
 ##########################################################
 ###  Customized user variables
@@ -29,43 +30,28 @@ inkyphat.set_colour('red')
 # Which stock symbol do you want to watch?
 symbol = 'DJIA'
 
-# This is where you put your https://www.alphavantage.co API key
-dir = "/home/pi/inkyphat-stockmarket/"
-apifile = dir + "apikey.txt"
-
-
 ##########################################################
 ###  Download the stock data
 ##########################################################
 
-# Keep the apikey separate and away from the Github repo
-if os.path.isfile(apifile) and os.path.getsize(apifile) > 1:
-    apikey = str(open(apifile).read()).strip("\n")
-else:
-    print(apifile, "file is missing or is empty")
-    print("Get a free API key from https://www.alphavantage.co")
-    exit()
-
-url="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apikey}".format(symbol=symbol, apikey=apikey)
-response = requests.get(url)
-#print(response.text)          # Uncomment to see raw JSON response from server
-data = response.json()         # Convert response string data to json data
+import AlphaVantage
+data = AlphaVantage.lookup(symbol).data()
 
 
 ##########################################################
 ###  Manipulate the string data  
 ##########################################################
 
-latest_trading_day = data['Global Quote']['07. latest trading day']
+latest_trading_day = data['07. latest trading day']
 
-price = data['Global Quote']['05. price']
+price = data['05. price']
 if len(str(price)) > 9: 
     price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
 else:
     price = round(float(price),2)         # Round to two decimals on numbers less than 10000
     price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
 
-change_percent = data['Global Quote']['10. change percent']
+change_percent = data['10. change percent']
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 if float(change_percent) < 0:
@@ -77,13 +63,13 @@ else:
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
-    icon = dir + "icon-storm.png"
+    icon = base_dir + "icon-storm.png"
 elif float(change_percent) < -1 :
-    icon = dir + "icon-rain.png"
+    icon = base_dir + "icon-rain.png"
 elif float(change_percent) < 0:
     icon = ""
 elif float(change_percent) >= 2:
-    icon = dir + "icon-sun.png"
+    icon = base_dir + "icon-sun.png"
 else:
     icon = ""
 

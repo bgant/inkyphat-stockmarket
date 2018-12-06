@@ -6,7 +6,7 @@ NYSE:
     location: 'America/New_York'
     market_open:  1430
     market_close: 2100
-    symbol: 'MSFT' # Microsoft
+    symbol: 'DIS' # Disney
 
 NASDAQ:
     name: 'NASDAQ Stock Market'

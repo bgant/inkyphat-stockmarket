@@ -64,33 +64,10 @@ class exchange:
         #    Source: https://stackoverflow.com/questions/9428989/how-to-test-if-the-stock-market-nyse-is-currently-open-closed
         #
 
-        # Define XML data to send to API
         symbol = self.yaml['symbol']
-        imei = 42 # Apparently any random UID will work??
 
-        xml = "<?xml version='1.0' encoding='utf−8'?><request devtype='Apple_OSX' deployver='APPLE_DASHBOARD_1_0' \
-               app='YGoAppleStocksWidget' appver='unknown' api='finance' apiver='1.0.1' acknotification='0000'><query id='0' \
-               timestamp='`date +%s000`' type='getquotes'><list><symbol>"
-        xml = xml + symbol
-        xml = xml + "</symbol></list></query></request>"
-        xml = xml.encode('utf-8')
-
-        # Send XML data to API to get response
-        import requests
-        headers = {'Content-Type': 'application/xml'}
-        response = requests.post('http://wu-quotes.apple.com/dgw?imei={imei}&apptype=finance', data=xml, headers=headers)
-        #print(response.text) # See the raw XML response from the server
-
-        # Parse XML response into dictionary list of key-value pairs
-        from xml.etree import ElementTree
-        root = ElementTree.fromstring(response.content)
-        #print(root[0][0][0][6].text) # Crude way to manually select values from the XML response
-
-        results = {} # Initialize dictionary variable to hold XML response key-value pairs
-        for child in root.iter(): # Interate through each element in the XML response
-            #print(child.tag, child.attrib, child.text) # View the values for each element
-            results.update({child.tag:child.text}) # Add key-value pairs to the dictionary
-
+        import AppleQuote
+        results = AppleQuote.lookup(symbol).data()
         #print(results)
 
         # A "status" value of zero means the "exchange" for this "symbol" is closed
@@ -107,5 +84,5 @@ class exchange:
 #
 if __name__ == "__main__":
     import sys
-    print("Is the", sys.argv[1].upper(), "exchange normally open now? ",     exchange(sys.argv[1]).hours())
+    print("Is the", sys.argv[1].upper(), "exchange Normally open now?     ", exchange(sys.argv[1]).hours())
     print("Is the", sys.argv[1].upper(), "exchange REALLY open right now? ", exchange(sys.argv[1]).open())
