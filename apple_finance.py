@@ -59,8 +59,9 @@ class lookup:
 
     def day(self):
         import time
-        self.day = int(self.results['timestamp']) # Epoch Time string converted to integer
-        self.day = time.strftime('%Y-%m-%d', time.localtime(self.day)) # Year-Month-Day value
+        self.day = self.results['timestamp'] # Epoch Time value
+        self.day = int(self.day) # string converted to integer for localtime function
+        self.day = time.strftime('%Y-%m-%d', time.localtime(self.day)) # Year-Month-Day value 
         return self.day
 
     def status(self):
@@ -75,8 +76,8 @@ class lookup:
 if __name__ == "__main__":
     import sys
     test = lookup(sys.argv[1])
-    print('data: ', test.data())
-    print('price: ', test.price())
-    print('percent: ', test.percent()) 
-    print('day: ', test.day())
-    print('status: ', test.status())
+    print('data:', test.data())
+    print('price:', test.price())
+    print('percent:', test.percent()) 
+    print('day:', test.day())
+    print('status:', test.status())

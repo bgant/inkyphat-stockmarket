@@ -34,24 +34,27 @@ symbol = 'DJIA'
 ###  Download the stock data
 ##########################################################
 
-import AlphaVantage
-data = AlphaVantage.lookup(symbol).data()
+import alphavantage
+data = alphavantage.lookup(symbol)
+
+#import apple_finance
+#data = apple_finance.lookup(symbol)
 
 
 ##########################################################
 ###  Manipulate the string data  
 ##########################################################
 
-latest_trading_day = data['07. latest trading day']
+latest_trading_day = data.day()
 
-price = data['05. price']
+price = data.price()
 if len(str(price)) > 9: 
     price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
 else:
     price = round(float(price),2)         # Round to two decimals on numbers less than 10000
     price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
 
-change_percent = data['10. change percent']
+change_percent = data.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 if float(change_percent) < 0:

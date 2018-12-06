@@ -6,6 +6,8 @@ print('Looking up LMT at www.alphavantage.co...')
 lmt = alphavantage.lookup('LMT')
 print('data:', lmt.data())
 print('price:', lmt.price())
+print('percent:', lmt.percent())
+print('day:', lmt.day())
 print('\n')
 
 import apple_finance
@@ -13,6 +15,8 @@ print('Looking up AAPL at wu-quotes.apple.com...')
 aapl = apple_finance.lookup('AAPL')
 print('data:', aapl.data())
 print('price:', aapl.price())
+print('percent:', aapl.percent())
+print('day:', aapl.day())
 print('status:', aapl.status())
 print('\n')
 
