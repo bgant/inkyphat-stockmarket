@@ -3,22 +3,20 @@
 #
 # command line:
 #
-#   python3 AlphaVantage.py MSFT
+#   python3 alphavantage.py MSFT
 #
 #
 # Python3 script:
 #
-#   import AlphaVantage
-#   msft = AlphaVantage('MSFT').lookup()
+#   import alphavantage
+#   msft = alphavantage.lookup('MSFT')
 #   msft.data()
-#   msft.data['05. price']
+#   msft.price()
 #
 
 class lookup:
     def __init__(self, symbol):
         self.symbol = symbol.lower()
-
-    def data(self):
 
         # This is where you put your https://www.alphavantage.co API key
         dir = "/home/pi/inkyphat-stockmarket/"
@@ -37,11 +35,31 @@ class lookup:
         url="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apikey}".format(symbol=self.symbol, apikey=apikey)
         response = requests.get(url)
         #print(response.text)          # Uncomment to see raw JSON response from server
-        data = response.json()         # Convert response string data to json data
-        return data['Global Quote']
+        self.response = response.json()         # Convert response string data to json data
+
+    def data(self):
+        self.data = self.response
+        return self.data
+
+    def price(self):
+        self.price = self.response['Global Quote']['05. price']
+        return self.price
+
+    def percent(self):
+        self.percent = self.response['Global Quote']['10. change percent']
+        self.percent = str(float(self.percent[:-1])) # Strip "%" sign, convert string to float, convert back to string
+        return self.percent
+
+    def day(self):
+        self.day = self.response['Global Quote']['07. latest trading day']
+        return self.day
 
 # This section allows you to run the module directly for testing
 #   Source: https://docs.python.org/2/tutorial/modules.html
 if __name__ == "__main__":
     import sys
-    print(lookup(sys.argv[1]).data())
+    test = lookup(sys.argv[1])
+    print('data:', test.data())
+    print('price:', test.price())
+    print('percent:', test.percent())
+    print('day:', test.day())
