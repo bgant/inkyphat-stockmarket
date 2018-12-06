@@ -1,0 +1,31 @@
+# https://en.wikipedia.org/wiki/List_of_stock_exchange_trading_hours
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+NYSE:
+    name: 'New York Stock Exchange'
+    location: 'America/New_York'
+    market_open:  1430
+    market_close: 2100
+    symbol: 'MSFT' # Microsoft
+
+NASDAQ:
+    name: 'NASDAQ Stock Market'
+    location: 'America/New_York'
+    market_open:  1430
+    market_close: 2100
+    symbol: 'AAPL' # Apple
+
+LSE:
+    name: 'London Stock Exchange'
+    location: 'Europe/London'
+    market_open:   800
+    market_close: 1630
+    symbol: 'BARC.L' # Barclays
+
+NZSX:
+    name: 'New Zealand Stock Exchange'
+    location: 'Pacific/Auckland'
+    market_open:  2200
+    market_close:  500
+    symbol: 'AIR.NZ' # Air New Zealand Limited
+

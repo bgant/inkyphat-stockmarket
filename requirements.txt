@@ -1,0 +1,5 @@
+inkyphat
+requests
+pytz
+xml.etree
+pyyaml
