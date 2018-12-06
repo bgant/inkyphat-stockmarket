@@ -7,8 +7,6 @@
 import sys
 from PIL import Image, ImageFont
 import inkyphat
-import json      # Handles JSON data
-import requests  # Handles URL requests that return JSON data
 import datetime
 import os.path
 
@@ -24,37 +22,38 @@ inkyphat.set_colour('red')
 # 'black' is the original two color (Black, White) inky pHat.
 
 # Common stock symbols:
-#	DJIA  Dow Jones Industrial Average
+#	^DJI  Dow Jones Industrial Average
 #	SPX   S&P 500 Index
 #	NYA   NASDAQ Composite Index
 # Which stock symbol do you want to watch?
-symbol = 'DJIA'
+symbol = '^DJI'
+
 
 ##########################################################
-###  Download the stock data
+###  Download the stock data (multiple options)
 ##########################################################
 
-import alphavantage
-data = alphavantage.lookup(symbol)
+#import alphavantage
+#quote = alphavantage.lookup(symbol)
 
-#import apple_finance
-#data = apple_finance.lookup(symbol)
+import apple_finance
+quote = apple_finance.lookup(symbol)
 
 
 ##########################################################
 ###  Manipulate the string data  
 ##########################################################
 
-latest_trading_day = data.day()
+latest_trading_day = quote.day()
 
-price = data.price()
-if len(str(price)) > 9: 
+price = quote.price()
+if len(str(price)) >= 8: 
     price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
 else:
     price = round(float(price),2)         # Round to two decimals on numbers less than 10000
     price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
 
-change_percent = data.percent()
+change_percent = quote.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 if float(change_percent) < 0:

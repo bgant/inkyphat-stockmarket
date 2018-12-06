@@ -47,7 +47,8 @@ class lookup:
             self.results.update({child.tag:child.text}) # Add key-value pairs to the dictionary
 
     def data(self):
-        return self.results
+        self.data = self.results
+        return self.data
 
     def price(self):
         self.price = self.results['price']

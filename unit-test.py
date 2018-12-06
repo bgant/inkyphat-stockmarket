@@ -2,22 +2,22 @@
 print('\n')
 
 import alphavantage
-print('Looking up LMT at www.alphavantage.co...')
-lmt = alphavantage.lookup('LMT')
-print('data:', lmt.data())
-print('price:', lmt.price())
-print('percent:', lmt.percent())
-print('day:', lmt.day())
+print('Looking up ^DJI at www.alphavantage.co...')
+test1 = alphavantage.lookup('^DJI')
+print('data:',    test1.data())
+print('price:',   test1.price())
+print('percent:', test1.percent())
+print('day:',     test1.day())
 print('\n')
 
 import apple_finance
-print('Looking up AAPL at wu-quotes.apple.com...')
-aapl = apple_finance.lookup('AAPL')
-print('data:', aapl.data())
-print('price:', aapl.price())
-print('percent:', aapl.percent())
-print('day:', aapl.day())
-print('status:', aapl.status())
+print('Looking up ^DJI at wu-quotes.apple.com...')
+test2 = apple_finance.lookup('^DJI')
+print('data:',    test2.data())
+print('price:',   test2.price())
+print('percent:', test2.percent())
+print('day:',     test2.day())
+print('status:',  test2.status())
 print('\n')
 
 import stockmarket
