@@ -8,9 +8,10 @@ import sys
 from PIL import Image, ImageFont
 import inkyphat
 import datetime
-import os.path
 
-base_dir = '/home/pi/inkyphat-stockmarket/'
+# Move into the directory of this script 
+import os.path
+os.chdir(os.path.dirname(os.path.abspath(__file__))) 
 
 ##########################################################
 ###  Customized user variables
@@ -65,13 +66,13 @@ else:
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
-    icon = base_dir + "icon-storm.png"
+    icon = "icon-storm.png"
 elif float(change_percent) < -1 :
-    icon = base_dir + "icon-rain.png"
+    icon = "icon-rain.png"
 elif float(change_percent) < 0:
     icon = ""
 elif float(change_percent) >= 2:
-    icon = base_dir + "icon-sun.png"
+    icon = "icon-sun.png"
 else:
     icon = ""
 

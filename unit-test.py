@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+# Move into the directory of this script
+import os.path
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 print('\n')
 
 import alphavantage

@@ -9,18 +9,20 @@
 # */5 *   * * 1-5 pi      /home/pi/inkyphat-stockmarket/inkyphat-stockmarket-launcher.py &
 #
 
-import os
 from datetime import datetime
 import pytz   # Python Timezones Module
 
-base_dir = '/home/pi/inkyphat-stockmarket'
+# Move into the directory of this script
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 ##########################################################
 ###  Is this script currently enabled?
 ##########################################################
 
 # Check if we have disabled crontab launcher for maintenance
-enable_check = os.path.isfile(base_dir + '/crontab-enable')
+enable_check = os.path.isfile('crontab-enable')
 if enable_check == False:
     print('Launcher is currently disabled... Exiting')
     exit()
@@ -65,7 +67,7 @@ time_now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
 
 if market_open < time_now < market_close and day_of_the_week <= 5:
     print('Updating inky pHat...')
-    os.system(base_dir + "/inkyphat-stockmarket.py &")
+    os.system("inkyphat-stockmarket.py &")
 else:
     print('Stock Market is currently closed')
 
