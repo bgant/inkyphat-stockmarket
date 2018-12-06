@@ -66,13 +66,13 @@ else:
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
-    icon = "icon-storm.png"
+    icon = "./images/icon-storm.png"
 elif float(change_percent) < -1 :
-    icon = "icon-rain.png"
+    icon = "./images/icon-rain.png"
 elif float(change_percent) < 0:
     icon = ""
 elif float(change_percent) >= 2:
-    icon = "icon-sun.png"
+    icon = "./images/icon-sun.png"
 else:
     icon = ""
 
