@@ -18,6 +18,11 @@ class lookup:
     def __init__(self, symbol):
         self.symbol = symbol.lower()
 
+        #import configparser
+        #config = configparser.ConfigParser()
+        #config.read('inkyphat-stockmarket.ini')
+        #apikey  = config.get('inkyphat_stockmarket', 'apikey')
+
         # This is where you put your https://www.alphavantage.co API key
         dir = "/home/pi/inkyphat-stockmarket/"
         apifile = dir + "apikey.txt"

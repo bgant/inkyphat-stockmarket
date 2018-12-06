@@ -1,0 +1,32 @@
+[inkyphat_stockmarket]
+
+# There are now two Pimoroni Inky displays:
+#   'pHat' is the size of the Raspberry Pi Zero
+#   'wHat' is larger
+inky_type  = pHat
+
+# There are Inky displays with various colors:
+#   'red' is the three color (Black, White, Red) Inky pHat
+#   'yellow' is the three color (Black, White, Yellow) Inky pHat
+#   'black' is the original two color (Black, White) Inky pHat
+inky_color = red
+
+# Common stock symbols:
+#	^DJI  Dow Jones Industrial Average
+#	SPX   S&P 500 Index
+#	NYA   NASDAQ Composite Index
+# Which stock symbol do you want to display?
+symbol = ^DJI
+
+# AlphaVantage.co provides free stock market quotes.
+# Sign up for a free API key and enter it here:
+apikey = 
+
+# The script changes behaviour if running from crontab:
+#    'enabled' sets the scripts to only update the Inky display when the markets are open
+#    'disbled' allows you to manually update the Inky display at any time
+crontab = disabled
+
+# Example /etc/crontab entry on Linux that runs every five minutes Monday through Friday:
+#    */5 *   * * 1-5 pi      nice /home/pi/inkyphat-stockmarket/inkyphat-stockmarket-launcher.py > /dev/null 2>&1 &
+

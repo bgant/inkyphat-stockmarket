@@ -3,3 +3,4 @@ requests
 pytz
 xml.etree
 pyyaml
+configparser

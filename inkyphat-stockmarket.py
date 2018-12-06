@@ -13,6 +13,13 @@ import datetime
 import os.path
 os.chdir(os.path.dirname(os.path.abspath(__file__))) 
 
+#import configparser
+#config = configparser.ConfigParser()
+#config.read('inkyphat-stockmarket.ini')
+#symbol  = config.get('inkyphat_stockmarket', 'symbol')
+#color   = config.get('inkyphat_stockmarket', 'color')
+
+
 ##########################################################
 ###  Customized user variables
 ##########################################################

@@ -1,5 +1,7 @@
 # Project files to ignore
 apikey.txt
+inkyphat-stockmarket.ini
+inkyphat_stockmarket.ini
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
