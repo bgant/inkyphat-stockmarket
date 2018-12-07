@@ -67,9 +67,6 @@ latest_trading_day = quote.day()
 price = quote.price()
 if len(str(price)) >= 8: 
     price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
-else:
-    price = round(float(price),2)         # Round to two decimals on numbers less than 10000
-    price = str("{:.2f}".format(price))   # Print trailing zeros after decimal if needed
 
 change_percent = quote.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string

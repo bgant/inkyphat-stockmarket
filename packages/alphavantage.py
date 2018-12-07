@@ -44,6 +44,8 @@ class lookup:
 
     def price(self):
         self.price = self.response['Global Quote']['05. price']
+        self.price = round(float(self.price),2)         # Round to two decimals 
+        self.price = str("{:.2f}".format(self.price))   # Print trailing zeros after decimal if needed
         return self.price
 
     def percent(self):

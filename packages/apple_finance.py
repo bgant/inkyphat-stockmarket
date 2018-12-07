@@ -56,6 +56,7 @@ class lookup:
 
     def percent(self):
         self.percent = self.results['changepercent']
+        self.percent = str(round(float(self.percent), 4)) # Rounding to match AlphaVantage digits
         return self.percent
 
     def day(self):
