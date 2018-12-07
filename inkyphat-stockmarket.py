@@ -41,11 +41,11 @@ symbol = '^DJI'
 ###  Download the stock data (multiple options)
 ##########################################################
 
-import alphavantage
-quote = alphavantage.lookup(symbol)
+import packages.alphavantage
+quote = packages.alphavantage.lookup(symbol)
 
-#import apple_finance
-#quote = apple_finance.lookup(symbol)
+#import packages.apple_finance
+#quote = packages.apple_finance.lookup(symbol)
 
 
 ##########################################################
