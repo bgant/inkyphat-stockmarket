@@ -64,7 +64,7 @@ class lookup:
 if __name__ == "__main__":
     import sys
     test = lookup(sys.argv[1])
-    print('data:', test.data())
-    print('price:', test.price())
-    print('percent:', test.percent())
-    print('day:', test.day())
+    print('price:'.rjust(9), test.price().rjust(11))
+    print('percent:'.rjust(9), test.percent().rjust(11))
+    print('day:'.rjust(9), test.day().rjust(11))
+    print('data:'.rjust(9), test.data())
