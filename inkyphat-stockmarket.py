@@ -44,7 +44,7 @@ if crontab == 'enabled':
     else:
         print('crontab enabled:', exchange_name.upper(), 'exchange is currently open... Updating Inky display')
 else:
-    print('crontab disabled: Manually updating Inky display')
+    print('crontab disabled: Updating Inky display')
 
 
 ##########################################################
