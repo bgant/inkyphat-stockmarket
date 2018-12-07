@@ -9,25 +9,42 @@ import inkyphat
 from PIL import Image, ImageFont
 
 # Move into the directory of this script 
-os.chdir(os.path.dirname(os.path.abspath(__file__))) 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(base_dir)
 
+
+##########################################################
+###  Read Values from the configuration ini file
+##########################################################
 import configparser
 config = configparser.ConfigParser()
-
 if os.path.exists('inkyphat-stockmarket.ini'):
     config.read('inkyphat-stockmarket.ini')
 else:
-    print("Creating inkyphat-stockmarket.ini file...")
+    print("Creating inkyphat-stockmarket.ini file... Edit file to add API key and change script parameters")
     import shutil
-    shutil.copyfile('./packages/inkyphat-stockmarket.ini.sample', './inkyphat-stockmarket.ini')
-    print("Edit file to changes any parameters and add your AlphaVantage API key.")
+    shutil.copyfile(base_dir + '/packages/inkyphat-stockmarket.ini.sample', base_dir + '/inkyphat-stockmarket.ini')
     exit()
+symbol         = config.get('inkyphat_stockmarket', 'symbol')
+exchange_name  = config.get('inkyphat_stockmarket', 'exchange_name')
+inky_type      = config.get('inkyphat_stockmarket', 'inky_type')
+inky_color     = config.get('inkyphat_stockmarket', 'inky_color')
+crontab        = config.get('inkyphat_stockmarket', 'crontab')
 
-symbol  = config.get('inkyphat_stockmarket', 'symbol')
-inky_color   = config.get('inkyphat_stockmarket', 'inky_color')
 
-
-inkyphat.set_colour(inky_color)
+##########################################################
+###  If crontab is enabled, is the Exchange open now?
+##########################################################
+if crontab == 'enabled':
+    import packages.stockmarket
+    exchange_open = packages.stockmarket.exchange(exchange_name).hours() 
+    if exchange_open == False:
+        print('crontab enabled:', exchange_name.upper(), 'exchange is currently closed... Exiting')
+        exit()
+    else:
+        print('crontab enabled:', exchange_name.upper(), 'exchange is currently open... Updating Inky display')
+else:
+    print('crontab disabled: Manually updating Inky display')
 
 
 ##########################################################
@@ -42,7 +59,7 @@ quote = packages.alphavantage.lookup(symbol)
 
 
 ##########################################################
-###  Manipulate the string data for inky display 
+###  Manipulate the string data for Inky display 
 ##########################################################
 
 latest_trading_day = quote.day()
@@ -66,15 +83,15 @@ else:
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
-    icon = "./images/icon-storm.png"
+    icon = base_dir + '/images/icon-storm.png'
 elif float(change_percent) < -1 :
-    icon = "./images/icon-rain.png"
+    icon = base_dir + '/images/icon-rain.png'
 elif float(change_percent) < 0:
-    icon = ""
+    icon = ''
 elif float(change_percent) >= 2:
-    icon = "./images/icon-sun.png"
+    icon = base_dir + '/images/icon-sun.png'
 else:
-    icon = ""
+    icon = ''
 
 change_percent = plus_sign + change_percent + "%"
 
@@ -83,6 +100,7 @@ change_percent = plus_sign + change_percent + "%"
 ###  Draw images on the inky display
 ##########################################################
 
+inkyphat.set_colour(inky_color)
 inkyphat.set_border(text_colour)
 
 price_font_size = 36

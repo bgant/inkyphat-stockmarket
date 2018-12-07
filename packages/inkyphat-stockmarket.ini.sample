@@ -18,6 +18,13 @@ inky_color = red
 # Which stock symbol do you want to display?
 symbol = ^DJI
 
+# This is used to check is a particular Stock Exchange is open
+# (more Exchanges can be added to stockmarket.yaml file)
+#       NYSE  New York Stock Exchange (New York)
+#       LSE   Lodon Stock Exchange
+#       NZSX  New Zealand Stock Exchange      
+exchange_name = NYSE
+
 # AlphaVantage.co provides free stock market quotes.
 # Sign up for a free API key and enter it here:
 apikey = 
@@ -28,5 +35,5 @@ apikey =
 crontab = disabled
 
 # Example /etc/crontab entry on Linux that runs every five minutes Monday through Friday:
-#    */5 *   * * 1-5 pi      nice /home/pi/inkyphat-stockmarket/inkyphat-stockmarket-launcher.py > /dev/null 2>&1 &
+#    */5 *   * * 1-5 pi      nice /home/pi/inkyphat-stockmarket/inkyphat-stockmarket.py > /dev/null 2>&1 &
 

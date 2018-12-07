@@ -3,6 +3,10 @@ class exchange:
     def __init__(self, exchange):
         self.exchange = exchange.upper()
 
+        # Move into the directory of this script
+        import os.path
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
         # Import data from YAML file with stock exchange information
         import yaml
         with open('stockmarket.yaml', 'rt') as yaml_file:
