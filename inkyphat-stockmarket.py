@@ -4,24 +4,30 @@
 # created: 2018-10-30
 #
 
+import os
 import inkyphat
 from PIL import Image, ImageFont
 
 # Move into the directory of this script 
-import os.path
 os.chdir(os.path.dirname(os.path.abspath(__file__))) 
 
-#import configparser
-#config = configparser.ConfigParser()
-#config.read('inkyphat-stockmarket.ini')
-#symbol  = config.get('inkyphat_stockmarket', 'symbol')
-#color   = config.get('inkyphat_stockmarket', 'color')
+import configparser
+config = configparser.ConfigParser()
 
-symbol = '^DJI'
-color = 'red'
+if os.path.exists('inkyphat-stockmarket.ini'):
+    config.read('inkyphat-stockmarket.ini')
+else:
+    print("Creating inkyphat-stockmarket.ini file...")
+    import shutil
+    shutil.copyfile('./packages/inkyphat-stockmarket.ini.sample', './inkyphat-stockmarket.ini')
+    print("Edit file to changes any parameters and add your AlphaVantage API key.")
+    exit()
+
+symbol  = config.get('inkyphat_stockmarket', 'symbol')
+inky_color   = config.get('inkyphat_stockmarket', 'inky_color')
 
 
-inkyphat.set_colour(color)
+inkyphat.set_colour(inky_color)
 
 
 ##########################################################
