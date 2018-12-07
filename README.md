@@ -3,8 +3,11 @@
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
 ### How to Use:
-* **inkyphat-stockmarket.py:** Main script downloads the latest stock price and displays it on the screen.
-* **inkyphat-stockmarket-launcher.py:** Run by /etc/crontab and launches the Main script if the Markets are open.
+* git clone https://github.com/bgant/inkyphat-stockmarket
+* Go to https://alphavantage.co and sign up for your free API key
+* python3 inkyphat-stockmarket.py (initializes your own config file)
+* Add your API key to inkyphat-stockmarket.ini
+* Add an entry to /etc/crontab to update the display
 
 ### More Information:
 * [Getting Started with Inky pHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-phat)
