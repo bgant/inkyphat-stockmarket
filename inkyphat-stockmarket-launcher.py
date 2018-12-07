@@ -67,7 +67,7 @@ time_now = int(str(datetime.utcnow().hour) + str(datetime.utcnow().minute))
 
 if market_open < time_now < market_close and day_of_the_week <= 5:
     print('Updating inky pHat...')
-    os.system("inkyphat-stockmarket.py &")
+    os.system("./inkyphat-stockmarket.py &")
 else:
     print('Stock Market is currently closed')
 
