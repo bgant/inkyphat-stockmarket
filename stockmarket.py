@@ -5,7 +5,7 @@ class exchange:
 
         # Import data from YAML file with stock exchange information
         import yaml
-        with open('exchanges.yaml', 'rt') as yaml_file:
+        with open('stockmarket.yaml', 'rt') as yaml_file:
             yaml_text = yaml_file.read()
         yaml_data = yaml.safe_load(yaml_text)
         self.yaml = yaml_data[self.exchange]
