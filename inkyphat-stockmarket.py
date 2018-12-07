@@ -30,6 +30,11 @@ exchange_name  = config.get('inkyphat_stockmarket', 'exchange_name')
 inky_type      = config.get('inkyphat_stockmarket', 'inky_type')
 inky_color     = config.get('inkyphat_stockmarket', 'inky_color')
 exchange_hours = config.get('inkyphat_stockmarket', 'exchange_hours')
+apikey         = config.get('inkyphat_stockmarket', 'apikey')
+
+if apikey == '':
+    print('Go to http://alphavantage.co to sign up for a free API key')
+    exit()
 
 
 ##########################################################

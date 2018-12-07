@@ -11,8 +11,8 @@ inky_type  = pHat
 #   'black' is the original two color (Black, White) Inky pHat
 inky_color = red
 
-# AlphaVantage.co provides free stock market quotes.
-# Sign up for a free API key and enter it here:
+# AlphaVantage provides free stock market quotes.
+# Sign up for a free API key at http://alphavantage.co and enter it here:
 apikey =
 
 # Common stock symbols:
