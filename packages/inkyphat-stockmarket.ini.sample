@@ -22,7 +22,7 @@ apikey =
 # Which stock symbol do you want to display?
 symbol = ^DJI
 
-# This is used to check is a particular Stock Exchange is open
+# This is used to check if a particular Stock Exchange is open
 # (more Exchanges can be added to stockmarket.yaml file)
 #       NYSE  New York Stock Exchange (New York)
 #       LSE   Lodon Stock Exchange
