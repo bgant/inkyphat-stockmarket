@@ -18,22 +18,18 @@ class lookup:
     def __init__(self, symbol):
         self.symbol = symbol.lower()
 
-        #import configparser
-        #config = configparser.ConfigParser()
-        #config.read('inkyphat-stockmarket.ini')
-        #apikey  = config.get('inkyphat_stockmarket', 'apikey')
-
-        # This is where you put your https://www.alphavantage.co API key
-        dir = "/home/pi/inkyphat-stockmarket/"
-        apifile = dir + "apikey.txt"
-        # Keep the apikey separate and away from the Github repo using .gitignore
-
+        # Move into the directory of this script
         import os.path
-        if os.path.isfile(apifile) and os.path.getsize(apifile) > 1:
-            apikey = str(open(apifile).read()).strip("\n")
-        else:
-            print(apifile, "file is missing or is empty")
-            print("Get a free API key from https://www.alphavantage.co")
+        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        os.chdir('../')
+
+        import configparser
+        config = configparser.ConfigParser(allow_no_value=True)
+        config.read('inkyphat-stockmarket.ini')
+        apikey  = config.get('inkyphat_stockmarket', 'apikey')
+
+        if apikey == '':
+            print('Go to http://alphavantage.co to sign up for a free API key')
             exit()
 
         import requests
