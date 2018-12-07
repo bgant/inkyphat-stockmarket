@@ -29,22 +29,22 @@ symbol         = config.get('inkyphat_stockmarket', 'symbol')
 exchange_name  = config.get('inkyphat_stockmarket', 'exchange_name')
 inky_type      = config.get('inkyphat_stockmarket', 'inky_type')
 inky_color     = config.get('inkyphat_stockmarket', 'inky_color')
-crontab        = config.get('inkyphat_stockmarket', 'crontab')
+exchange_hours = config.get('inkyphat_stockmarket', 'exchange_hours')
 
 
 ##########################################################
-###  If crontab is enabled, is the Exchange open now?
+###  Update the display only if the Exchange is open?
 ##########################################################
-if crontab == 'enabled':
+if exchange_hours == 'enabled':
     import packages.stockmarket
     exchange_open = packages.stockmarket.exchange(exchange_name).hours() 
     if exchange_open == False:
-        print('crontab enabled:', exchange_name.upper(), 'exchange is currently closed... Exiting')
+        print('exchange_hours enabled:', exchange_name.upper(), 'exchange is currently closed... Exiting')
         exit()
     else:
-        print('crontab enabled:', exchange_name.upper(), 'exchange is currently open... Updating Inky display')
+        print('exchange_hours enabled:', exchange_name.upper(), 'exchange is currently open... Updating Inky display')
 else:
-    print('crontab disabled: Updating Inky display')
+    print('exchange_hours disabled: Updating Inky display')
 
 
 ##########################################################

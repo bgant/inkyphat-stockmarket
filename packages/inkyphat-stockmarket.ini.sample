@@ -11,6 +11,10 @@ inky_type  = pHat
 #   'black' is the original two color (Black, White) Inky pHat
 inky_color = red
 
+# AlphaVantage.co provides free stock market quotes.
+# Sign up for a free API key and enter it here:
+apikey =
+
 # Common stock symbols:
 #	^DJI  Dow Jones Industrial Average
 #	SPX   S&P 500 Index
@@ -25,14 +29,10 @@ symbol = ^DJI
 #       NZSX  New Zealand Stock Exchange      
 exchange_name = NYSE
 
-# AlphaVantage.co provides free stock market quotes.
-# Sign up for a free API key and enter it here:
-apikey = 
-
-# The script changes behaviour if running from crontab:
-#    'enabled' sets the scripts to only update the Inky display when the markets are open
-#    'disbled' allows you to manually update the Inky display at any time
-crontab = disabled
+# This section only checks for new quote data if the Exchange is open:
+#    'enabled' sets the script to only update the Inky display when the exchange_name is open
+#    'disbled' updates the Inky display at any time (useful for testing)
+exchange_hours = enabled
 
 # Example /etc/crontab entry on Linux that runs every five minutes Monday through Friday:
 #    */5 *   * * 1-5 pi      nice /home/pi/inkyphat-stockmarket/inkyphat-stockmarket.py > /dev/null 2>&1 &
