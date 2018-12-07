@@ -15,9 +15,9 @@ print('percent:', test1.percent())
 print('day:',     test1.day())
 print('\n')
 
-import apple_finance
+import packages.apple_finance
 print('Looking up ^DJI at wu-quotes.apple.com...')
-test2 = apple_finance.lookup('^DJI')
+test2 = packages.apple_finance.lookup('^DJI')
 print('data:',    test2.data())
 print('price:',   test2.price())
 print('percent:', test2.percent())
