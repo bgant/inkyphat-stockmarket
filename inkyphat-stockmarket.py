@@ -4,10 +4,8 @@
 # created: 2018-10-30
 #
 
-import sys
-from PIL import Image, ImageFont
 import inkyphat
-import datetime
+from PIL import Image, ImageFont
 
 # Move into the directory of this script 
 import os.path
@@ -19,22 +17,11 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 #symbol  = config.get('inkyphat_stockmarket', 'symbol')
 #color   = config.get('inkyphat_stockmarket', 'color')
 
-
-##########################################################
-###  Customized user variables
-##########################################################
-
-inkyphat.set_colour('red')
-# 'red' is the three color (Black, White, Red) inky pHat.
-# 'yellow' is the three color (Black, White, Yellow) inky pHat.
-# 'black' is the original two color (Black, White) inky pHat.
-
-# Common stock symbols:
-#	^DJI  Dow Jones Industrial Average
-#	SPX   S&P 500 Index
-#	NYA   NASDAQ Composite Index
-# Which stock symbol do you want to watch?
 symbol = '^DJI'
+color = 'red'
+
+
+inkyphat.set_colour(color)
 
 
 ##########################################################
@@ -49,7 +36,7 @@ quote = packages.alphavantage.lookup(symbol)
 
 
 ##########################################################
-###  Manipulate the string data  
+###  Manipulate the string data for inky display 
 ##########################################################
 
 latest_trading_day = quote.day()
@@ -66,10 +53,10 @@ change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, 
 
 if float(change_percent) < 0:
     text_colour = inkyphat.RED
-    plus_sign = ""
+    plus_sign = "" # number already has minus sign (-)
 else:
     text_colour = inkyphat.BLACK
-    plus_sign = "+"
+    plus_sign = "+" # Add plus sign (+) to positive number
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
@@ -87,7 +74,7 @@ change_percent = plus_sign + change_percent + "%"
 
 
 ##########################################################
-###  Draw images on the inky pHat
+###  Draw images on the inky display
 ##########################################################
 
 inkyphat.set_border(text_colour)
@@ -110,7 +97,6 @@ clock_font_size = 11
 clock_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, clock_font_size)
 clock_image_x = 150   # Max 212
 clock_image_y = 90    # Max 104
-#time_stamp = str(datetime.datetime.now().strftime("%Y-%m-%d")) # Today's Date
 time_stamp = latest_trading_day # Stock's Last Trading Day
 inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_image_size)
 
