@@ -1,3 +1,21 @@
+# https://github.com/bgant/inkyphat-stockmarket/commits/master/packages/stockmarket.py
+#
+# Brandon Gant
+# Created: 2018-12-07
+#
+#
+# command line:
+#
+#    python3 stockmarket.py nyse
+#
+#
+# Python3 script:
+# 
+#    import packages.stockmarket
+#    nyse = packages.stockmarket.exchange('NYSE')
+#    nyse.hours()
+#    nyse.status()
+#
 
 class exchange:
     def __init__(self, exchange):
@@ -59,7 +77,7 @@ class exchange:
             return False # Exchange should be closed
 
 
-    def open(self):
+    def status(self):
         ##########################################################
         ###  Is this Stock Exchange REALLY open now?      
         ##########################################################
@@ -82,4 +100,4 @@ class exchange:
 if __name__ == "__main__":
     import sys
     print("Is the", sys.argv[1].upper(), "exchange Normally open now?     ", exchange(sys.argv[1]).hours())
-    print("Is the", sys.argv[1].upper(), "exchange REALLY open right now? ", exchange(sys.argv[1]).open())
+    print("Is the", sys.argv[1].upper(), "exchange REALLY open right now? ", exchange(sys.argv[1]).status())

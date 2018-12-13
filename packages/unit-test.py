@@ -28,6 +28,6 @@ print('\n')
 import stockmarket
 nyse = stockmarket.exchange('nyse')
 print("NYSE exchange normally open now? ", nyse.hours()) # Based on business hours only
-print("NYSE exchange REALLY open now?   ", nyse.open()) # Connects to Apple Stock service
+print("NYSE exchange REALLY open now?   ", nyse.status()) # Connects to Apple Stock service
 print('\n')
 

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #
+# https://github.com/bgant/inkyphat-stockmarket/blob/master/inkyphat-stockmarket.py
+#
 # Brandon Gant
 # created: 2018-10-30
 #

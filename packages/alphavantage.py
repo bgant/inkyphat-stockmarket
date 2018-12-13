@@ -1,5 +1,8 @@
+# https://github.com/bgant/inkyphat-stockmarket/blob/master/packages/alphavantage.py
 #
-# Source: https://stackoverflow.com/questions/9428989/how-to-test-if-the-stock-market-nyse-is-currently-open-closed
+# Brandon Gant
+# Created: 2018-12-07
+#
 #
 # command line:
 #
@@ -8,8 +11,8 @@
 #
 # Python3 script:
 #
-#   import alphavantage
-#   msft = alphavantage.lookup('MSFT')
+#   import packages.alphavantage
+#   msft = packages.alphavantage.lookup('MSFT')
 #   msft.data()
 #   msft.price()
 #

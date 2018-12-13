@@ -1,3 +1,7 @@
+# https://github.com/bgant/inkyphat-stockmarket/blob/master/packages/apple_finance.py
+#
+# Brandon Gant
+# Created: 2018-12-07
 #
 # Source: https://stackoverflow.com/questions/9428989/how-to-test-if-the-stock-market-nyse-is-currently-open-closed
 #
@@ -8,8 +12,8 @@
 #
 # Python3 script:
 #
-#   import apple_finance
-#   aapl = apple_finance.lookup('AAPL')
+#   import packages.apple_finance
+#   aapl = packages.apple_finance.lookup('AAPL')
 #   appl.data()
 #   appl.price()
 #
