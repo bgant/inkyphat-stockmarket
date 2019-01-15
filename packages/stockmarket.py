@@ -66,12 +66,12 @@ class exchange:
 
         # If market opens before Midnight UTC and closes after Midnight UTC
         if self.yaml['market_open'] > self.yaml['market_close']:
-            if time_now > self.yaml['market_open'] or time_now < self.yaml['market_close']:
+            if time_now >= self.yaml['market_open'] or time_now <= self.yaml['market_close']:
                 return True # Exchange should be open
             else:
                 return False # Exchange should be closed
         # If market opens after Midnight UTC and closes before Midnight UTC
-        elif self.yaml['market_open'] < time_now < self.yaml['market_close'] and day_of_the_week <= 5:
+        elif self.yaml['market_open'] <= time_now <= self.yaml['market_close'] and day_of_the_week <= 5:
             return True # Exchange should be open
         else:
             return False # Exchange should be closed
