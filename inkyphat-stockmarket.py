@@ -78,7 +78,7 @@ if len(str(price)) >= 8:
 change_percent = quote.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
-if float(change_percent) < 0:
+if '-' in change_percent:
     text_colour = inkyphat.RED
     plus_sign = "" # number already has minus sign (-)
 else:
