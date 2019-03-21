@@ -4,7 +4,9 @@
 #
 # Brandon Gant
 # created: 2018-10-30
+# updated: 2019-03-21 Moved from older 'inkyphat' module to newer 'inky' module
 #
+
 
 import os
 # Move into the base directory of this script to import other files
@@ -15,6 +17,7 @@ os.chdir(base_dir)
 ##########################################################
 ###  Read Values from the configuration ini file
 ##########################################################
+
 import configparser
 config = configparser.ConfigParser()
 if os.path.exists('inkyphat-stockmarket.ini'):
@@ -35,10 +38,17 @@ if apikey == '':
     print('Go to http://alphavantage.co to sign up for a free API key')
     exit()
 
+if inky_type.lower() != "phat":
+    print('This script is currently written for the pHAT')
+    print('but it should be fairly easy to change to wHAT')
+    print('Exiting script...')
+    exit()
+
 
 ##########################################################
 ###  Update the display only if the Exchange is open?
 ##########################################################
+
 if exchange_hours == 'enabled':
     import stockmarket
     exchange_open = stockmarket.exchange(exchange_name).hours() 
@@ -58,8 +68,8 @@ else:
 import alphavantage
 quote = alphavantage.lookup(symbol)
 
-#import apple_finance
-#quote = apple_finance.lookup(symbol)
+#import apple_quote
+#quote = apple_quote.lookup(symbol)
 
 
 ##########################################################
@@ -75,12 +85,10 @@ if len(str(price)) >= 8:
 change_percent = quote.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
-if '-' in change_percent:
-    text_color = 'inky_display.RED'
-    plus_sign = "" # number already has minus sign (-)
-else:
-    text_color = 'inky_display.BLACK'
-    plus_sign = "+" # Add plus sign (+) to positive number
+# Uncomment hard-coded values for testing
+#change_percent = '2.5'
+#change_percent = '-1.5'
+#change_percent = '-2.5'
 
 # Let's throw in some weather icons depending on the price change today
 if float(change_percent) < -2:
@@ -94,24 +102,25 @@ elif float(change_percent) >= 2:
 else:
     icon = ''
 
-change_percent = plus_sign + change_percent + "%"
-
 
 ##########################################################
 ###  Draw images on the inky display
 ##########################################################
 
 from inky import InkyPHAT
-
-if inky_type.lower() != "phat":
-    print('This script is currently written for the pHAT')
-    print('but it should be fairly easy to change to wHAT')
-    print('Exiting script...')
-    import sys
-    sys.exit()
-
 inky_display = InkyPHAT(inky_color)
+
+# Use BLACK or RED depending on positive or negative change_percent
+if '-' in change_percent:
+    text_color = inky_display.RED
+    plus_sign = "" # number already has minus sign (-)
+else:
+    text_color = inky_display.BLACK
+    plus_sign = "+" # Add plus sign (+) to positive number
+
 inky_display.set_border(text_color)
+change_percent = plus_sign + change_percent + "%"
+
 
 from PIL import Image, ImageFont, ImageDraw
 img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
@@ -120,46 +129,53 @@ draw = ImageDraw.Draw(img)
 from font_fredoka_one import FredokaOne
 
 
-print(inky_type, inky_color, text_color)
-
-def price_image():
+def draw_price():
     font = ImageFont.truetype(FredokaOne, 36)
-    message = str(price)
+    message = price
     w, h = font.getsize(message)
     x = (inky_display.WIDTH / 2) - (w / 2)
     y = 40 - (h / 2)
-    #draw.text((x, y), message, text_color, font)
-    draw.text((x, y), message, inky_display.RED, font)
-
-price_image()
+    draw.text((x, y), message, text_color, font)
 
 
+def draw_change_percent():
+    font = ImageFont.truetype(FredokaOne, 20)
+    message = change_percent
+    w, h = font.getsize(message)
+    x = (inky_display.WIDTH / 2) - (w / 2)
+    y = 70 - (h / 2)
+    draw.text((x, y), message, text_color, font)
 
-#price_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, price_font_size)
-#price_image_width, price_image_height = inkyphat.textsize(price, price_image_size)
-#price_image_x = (inkyphat.WIDTH / 2) - (price_image_width / 2)
-#price_image_y = 40 - (price_image_height / 2)
-#inkyphat.text((price_image_x, price_image_y), price, text_colour, price_image_size)
 
-#change_percent_font_size = 20
-#change_percent_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, change_percent_font_size)
-#change_percent_image_width, change_percent_image_height = inkyphat.textsize(change_percent, change_percent_image_size)
-#change_percent_image_x = (inkyphat.WIDTH / 2) - (change_percent_image_width / 2)
-#change_percent_image_y = 70 - (change_percent_image_height / 2)
-#inkyphat.text((change_percent_image_x, change_percent_image_y), change_percent, text_colour, change_percent_image_size)
+def draw_date():
+    font = ImageFont.truetype(FredokaOne, 11)
+    message = latest_trading_day  # Stock's Last Trading Day
+    w, h = font.getsize(message)
+    x = 150   # Max 212
+    y = 90    # Max 104
+    draw.text((x, y), message, inky_display.BLACK, font)
 
-#clock_font_size = 11
-#clock_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, clock_font_size)
-#clock_image_x = 150   # Max 212
-#clock_image_y = 90    # Max 104
-#time_stamp = latest_trading_day # Stock's Last Trading Day
-#inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_image_size)
+def draw_symbol():
+    font = ImageFont.truetype(FredokaOne, 11)
+    message = symbol
+    w, h = font.getsize(message)
+    x = 5
+    y = 5
+    draw.text((x, y), message, inky_display.BLACK, font)
 
-#inkyphat.text((5, 5), symbol, inkyphat.BLACK, clock_image_size)
+def draw_icon():
+    if len(icon) > 0: # Check that png file is specified
+        img.paste(Image.open(icon), (167, 5))
 
-#if len(icon) > 0:   # Check that png file is specified before trying to display it
-#    inkyphat.paste(Image.open(icon), (167, 5))
 
+# Add each element to the image
+draw_price()
+draw_change_percent()
+draw_date()
+draw_symbol()
+draw_icon()
+
+# Display the image on the pHAT (or wHAT)
 inky_display.set_image(img)
 inky_display.show()
 
