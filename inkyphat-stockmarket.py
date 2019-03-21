@@ -80,10 +80,10 @@ latest_trading_day = quote.day()
 
 price = quote.price()
 if len(str(price)) >= 8: 
-    price = str(round(float(price)))      # Remove decimals on numbers larger than 9999
+    price = str(round(float(price)))  # Remove decimals on numbers larger than 9999
 
 change_percent = quote.percent()
-change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
+change_percent = str(round(float(change_percent[:-1]), 1))  # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 # Uncomment hard-coded values for testing
 #change_percent = '2.5'
@@ -177,5 +177,5 @@ draw_icon()
 
 # Display the image on the pHAT (or wHAT)
 inky_display.set_image(img)
-inky_display.show()
+#inky_display.show()
 
