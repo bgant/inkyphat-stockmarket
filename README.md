@@ -4,6 +4,7 @@
 
 ### How to Use:
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
+* `pip3 install -r requirements.txt`
 * Go to https://alphavantage.co and sign up for your free API key
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
 * Add your API key to **inkyphat-stockmarket.ini**
