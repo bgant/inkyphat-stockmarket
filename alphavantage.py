@@ -28,7 +28,8 @@ class lookup:
 
         if apikey == '':
             print('Go to http://alphavantage.co to sign up for a free API key')
-            exit()
+            import sys
+            sys.exit()
 
         import requests
         url="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apikey}".format(symbol=self.symbol, apikey=apikey)
