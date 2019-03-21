@@ -7,13 +7,13 @@
 #
 # command line:
 #
-#   python3 apple_finance.py AAPL
+#   python3 apple_quote.py AAPL
 #
 #
 # Python3 script:
 #
-#   import packages.apple_finance
-#   aapl = packages.apple_finance.lookup('AAPL')
+#   import apple_quote
+#   aapl = apple_quote.lookup('AAPL')
 #   appl.data()
 #   appl.price()
 #

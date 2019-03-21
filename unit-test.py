@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 
-# Move into the directory of this script
-import os.path
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 print('\n')
 
 import alphavantage
@@ -15,9 +11,9 @@ print('day:'.rjust(9),     test1.day().rjust(11))
 print('data:'.rjust(9),    test1.data())
 print('\n')
 
-import apple_finance
+import apple_quote
 print('Looking up ^DJI at wu-quotes.apple.com...')
-test2 = apple_finance.lookup('^DJI')
+test2 = apple_quote.lookup('^DJI')
 print('price:'.rjust(9),   test2.price().rjust(11))
 print('percent:'.rjust(9), test2.percent().rjust(11))
 print('day:'.rjust(9),     test2.day().rjust(11))

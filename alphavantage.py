@@ -11,8 +11,8 @@
 #
 # Python3 script:
 #
-#   import packages.alphavantage
-#   msft = packages.alphavantage.lookup('MSFT')
+#   import alphavantage
+#   msft = alphavantage.lookup('MSFT')
 #   msft.data()
 #   msft.price()
 #
@@ -20,11 +20,6 @@
 class lookup:
     def __init__(self, symbol):
         self.symbol = symbol.lower()
-
-        # Move into the directory of this script
-        import os.path
-        os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        os.chdir('../')
 
         import configparser
         config = configparser.ConfigParser(allow_no_value=True)

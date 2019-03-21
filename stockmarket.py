@@ -11,8 +11,8 @@
 #
 # Python3 script:
 # 
-#    import packages.stockmarket
-#    nyse = packages.stockmarket.exchange('NYSE')
+#    import stockmarket
+#    nyse = stockmarket.exchange('NYSE')
 #    nyse.hours()
 #    nyse.status()
 #
@@ -20,10 +20,6 @@
 class exchange:
     def __init__(self, exchange):
         self.exchange = exchange.upper()
-
-        # Move into the directory of this script
-        import os.path
-        os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
         # Import data from YAML file with stock exchange information
         import yaml
@@ -88,8 +84,8 @@ class exchange:
 
         symbol = self.yaml['symbol']
 
-        import apple_finance
-        return apple_finance.lookup(symbol).status()
+        import apple_quote
+        return apple_quote.lookup(symbol).status()
 
 
 # This section allows you to run the module directly for testing

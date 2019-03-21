@@ -10,7 +10,7 @@ import os
 import inkyphat
 from PIL import Image, ImageFont
 
-# Move into the directory of this script 
+# Move into the base directory of this script to import other files
 base_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(base_dir)
 
@@ -25,7 +25,7 @@ if os.path.exists('inkyphat-stockmarket.ini'):
 else:
     print("Creating inkyphat-stockmarket.ini file... Edit file to add API key and change script parameters")
     import shutil
-    shutil.copyfile(base_dir + '/packages/inkyphat-stockmarket.ini.sample', base_dir + '/inkyphat-stockmarket.ini')
+    shutil.copyfile(base_dir + '/template/inkyphat-stockmarket.ini.sample', base_dir + '/inkyphat-stockmarket.ini')
     exit()
 symbol         = config.get('inkyphat_stockmarket', 'symbol')
 exchange_name  = config.get('inkyphat_stockmarket', 'exchange_name')
@@ -43,8 +43,8 @@ if apikey == '':
 ###  Update the display only if the Exchange is open?
 ##########################################################
 if exchange_hours == 'enabled':
-    import packages.stockmarket
-    exchange_open = packages.stockmarket.exchange(exchange_name).hours() 
+    import stockmarket
+    exchange_open = stockmarket.exchange(exchange_name).hours() 
     if exchange_open == False:
         print('exchange_hours enabled:', exchange_name.upper(), 'exchange is currently closed... Exiting')
         exit()
@@ -58,11 +58,11 @@ else:
 ###  Download the stock data (multiple options)
 ##########################################################
 
-import packages.alphavantage
-quote = packages.alphavantage.lookup(symbol)
+import alphavantage
+quote = alphavantage.lookup(symbol)
 
-#import packages.apple_finance
-#quote = packages.apple_finance.lookup(symbol)
+#import apple_finance
+#quote = apple_finance.lookup(symbol)
 
 
 ##########################################################
