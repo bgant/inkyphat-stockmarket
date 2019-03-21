@@ -7,9 +7,6 @@
 #
 
 import os
-import inkyphat
-from PIL import Image, ImageFont
-
 # Move into the base directory of this script to import other files
 base_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(base_dir)
@@ -79,10 +76,10 @@ change_percent = quote.percent()
 change_percent = str(round(float(change_percent[:-1]), 1))    # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 if '-' in change_percent:
-    text_colour = inkyphat.RED
+    text_color = 'inky_display.RED'
     plus_sign = "" # number already has minus sign (-)
 else:
-    text_colour = inkyphat.BLACK
+    text_color = 'inky_display.BLACK'
     plus_sign = "+" # Add plus sign (+) to positive number
 
 # Let's throw in some weather icons depending on the price change today
@@ -104,34 +101,65 @@ change_percent = plus_sign + change_percent + "%"
 ###  Draw images on the inky display
 ##########################################################
 
-inkyphat.set_colour(inky_color)
-inkyphat.set_border(text_colour)
+from inky import InkyPHAT
 
-price_font_size = 36
-price_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, price_font_size)
-price_image_width, price_image_height = inkyphat.textsize(price, price_image_size)
-price_image_x = (inkyphat.WIDTH / 2) - (price_image_width / 2)
-price_image_y = 40 - (price_image_height / 2)
-inkyphat.text((price_image_x, price_image_y), price, text_colour, price_image_size)
+if inky_type.lower() != "phat":
+    print('This script is currently written for the pHAT')
+    print('but it should be fairly easy to change to wHAT')
+    print('Exiting script...')
+    import sys
+    sys.exit()
 
-change_percent_font_size = 20
-change_percent_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, change_percent_font_size)
-change_percent_image_width, change_percent_image_height = inkyphat.textsize(change_percent, change_percent_image_size)
-change_percent_image_x = (inkyphat.WIDTH / 2) - (change_percent_image_width / 2)
-change_percent_image_y = 70 - (change_percent_image_height / 2)
-inkyphat.text((change_percent_image_x, change_percent_image_y), change_percent, text_colour, change_percent_image_size)
+inky_display = InkyPHAT(inky_color)
+inky_display.set_border(text_color)
 
-clock_font_size = 11
-clock_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, clock_font_size)
-clock_image_x = 150   # Max 212
-clock_image_y = 90    # Max 104
-time_stamp = latest_trading_day # Stock's Last Trading Day
-inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_image_size)
+from PIL import Image, ImageFont, ImageDraw
+img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+draw = ImageDraw.Draw(img)
 
-inkyphat.text((5, 5), symbol, inkyphat.BLACK, clock_image_size)
+from font_fredoka_one import FredokaOne
 
-if len(icon) > 0:   # Check that png file is specified before trying to display it
-    inkyphat.paste(Image.open(icon), (167, 5))
 
-inkyphat.show()
+print(inky_type, inky_color, text_color)
+
+def price_image():
+    font = ImageFont.truetype(FredokaOne, 36)
+    message = str(price)
+    w, h = font.getsize(message)
+    x = (inky_display.WIDTH / 2) - (w / 2)
+    y = 40 - (h / 2)
+    #draw.text((x, y), message, text_color, font)
+    draw.text((x, y), message, inky_display.RED, font)
+
+price_image()
+
+
+
+#price_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, price_font_size)
+#price_image_width, price_image_height = inkyphat.textsize(price, price_image_size)
+#price_image_x = (inkyphat.WIDTH / 2) - (price_image_width / 2)
+#price_image_y = 40 - (price_image_height / 2)
+#inkyphat.text((price_image_x, price_image_y), price, text_colour, price_image_size)
+
+#change_percent_font_size = 20
+#change_percent_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, change_percent_font_size)
+#change_percent_image_width, change_percent_image_height = inkyphat.textsize(change_percent, change_percent_image_size)
+#change_percent_image_x = (inkyphat.WIDTH / 2) - (change_percent_image_width / 2)
+#change_percent_image_y = 70 - (change_percent_image_height / 2)
+#inkyphat.text((change_percent_image_x, change_percent_image_y), change_percent, text_colour, change_percent_image_size)
+
+#clock_font_size = 11
+#clock_image_size = ImageFont.truetype(inkyphat.fonts.FredokaOne, clock_font_size)
+#clock_image_x = 150   # Max 212
+#clock_image_y = 90    # Max 104
+#time_stamp = latest_trading_day # Stock's Last Trading Day
+#inkyphat.text((clock_image_x, clock_image_y), time_stamp, inkyphat.BLACK, clock_image_size)
+
+#inkyphat.text((5, 5), symbol, inkyphat.BLACK, clock_image_size)
+
+#if len(icon) > 0:   # Check that png file is specified before trying to display it
+#    inkyphat.paste(Image.open(icon), (167, 5))
+
+inky_display.set_image(img)
+inky_display.show()
 
