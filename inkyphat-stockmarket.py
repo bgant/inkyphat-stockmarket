@@ -177,5 +177,5 @@ draw_icon()
 
 # Display the image on the pHAT (or wHAT)
 inky_display.set_image(img)
-#inky_display.show()
+inky_display.show()
 
