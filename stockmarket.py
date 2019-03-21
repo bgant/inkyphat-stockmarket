@@ -51,8 +51,8 @@ class exchange:
 
         # Are we currently in Daylight Savings or not? If so add one hour.
         if isDST_now_in(self.yaml['location']) == True:
-           self.yaml['market_open'] += 100
-           self.yaml['market_close'] += 100
+           self.yaml['market_open'] -= 100
+           self.yaml['market_close'] -= 100
 
         # Markets are closed Saturday and Sunday
         day_of_the_week = int(datetime.utcnow().strftime("%u"))   # The day of the week range 1 to 7 with Monday being 1
