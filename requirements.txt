@@ -1,4 +1,4 @@
-inkyphat
+inky
 requests
 pytz
 xml.etree
