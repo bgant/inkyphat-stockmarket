@@ -1,9 +1,9 @@
 [inkyphat_stockmarket]
 
 # There are now two Pimoroni Inky displays:
-#   'pHat' is the size of the Raspberry Pi Zero
-#   'wHat' is larger
-inky_type  = pHat
+#   'pHAT' is the size of the Raspberry Pi Zero
+#   'wHAT' is larger
+inky_type  = pHAT
 
 # There are Inky displays with various colors:
 #   'red' is the three color (Black, White, Red) Inky pHat
