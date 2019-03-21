@@ -7,7 +7,7 @@
 # updated: 2019-03-21 Moved from older 'inkyphat' module to newer 'inky' module
 #
 
-
+import sys
 import os
 # Move into the base directory of this script to import other files
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -26,7 +26,7 @@ else:
     print("Creating inkyphat-stockmarket.ini file... Edit file to add API key and change script parameters")
     import shutil
     shutil.copyfile(base_dir + '/template/inkyphat-stockmarket.ini.sample', base_dir + '/inkyphat-stockmarket.ini')
-    exit()
+    sys.exit()
 symbol         = config.get('inkyphat_stockmarket', 'symbol')
 exchange_name  = config.get('inkyphat_stockmarket', 'exchange_name')
 inky_type      = config.get('inkyphat_stockmarket', 'inky_type')
@@ -36,13 +36,13 @@ apikey         = config.get('inkyphat_stockmarket', 'apikey')
 
 if apikey == '':
     print('Go to http://alphavantage.co to sign up for a free API key')
-    exit()
+    sys.exit()
 
 if inky_type.lower() != "phat":
     print('This script is currently written for the pHAT')
     print('but it should be fairly easy to change to wHAT')
     print('Exiting script...')
-    exit()
+    sys.exit()
 
 
 ##########################################################
@@ -54,7 +54,7 @@ if exchange_hours == 'enabled':
     exchange_open = stockmarket.exchange(exchange_name).hours() 
     if exchange_open == False:
         print('exchange_hours enabled:', exchange_name.upper(), 'exchange is currently closed... Exiting')
-        exit()
+        sys.exit()
     else:
         print('exchange_hours enabled:', exchange_name.upper(), 'exchange is currently open... Updating Inky display')
 else:
