@@ -15,3 +15,4 @@
 ### More Information:
 * [Getting Started with Inky pHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-phat)
 * [Getting Started with the Raspberry Pi Zero Wireless](https://learn.sparkfun.com/tutorials/getting-started-with-the-raspberry-pi-zero-wireless)
+* [Inky pHAT Pinout](https://pinout.xyz/pinout/inky_phat)
