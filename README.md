@@ -5,7 +5,7 @@
 ### How to Use:
 * `sudo apt-get install git python3-pip`
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
-* `pip3 install -r requirements.txt` (this is slow... go do something else)
+* `pip3 install -r requirements.txt` (walk away... this is going to take a long time)
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
 * Go to https://alphavantage.co and sign up for your free API key
   * Add your API key to **inkyphat-stockmarket.ini**
