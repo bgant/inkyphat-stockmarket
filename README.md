@@ -3,12 +3,12 @@
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
 ### How to Use:
-* `sudo apt-get install git python3-pip
+* `sudo apt-get install git python3-pip`
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
 * `pip3 install -r requirements.txt`
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
 * Go to https://alphavantage.co and sign up for your free API key
- * Add your API key to **inkyphat-stockmarket.ini**
+  * Add your API key to **inkyphat-stockmarket.ini**
 * Add an entry to **/etc/crontab** to update the display automatically
 
 ### More Information:
