@@ -5,10 +5,10 @@
 ### How to Use:
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
 * `pip3 install -r requirements.txt`
-* Go to https://alphavantage.co and sign up for your free API key
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
+* Go to https://alphavantage.co and sign up for your free API key
 * Add your API key to **inkyphat-stockmarket.ini**
-* Add an entry to **/etc/crontab** to update the display
+* Add an entry to **/etc/crontab** to update the display automatically
 
 ### More Information:
 * [Getting Started with Inky pHAT](https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-inky-phat)
