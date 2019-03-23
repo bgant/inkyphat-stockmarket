@@ -1,4 +1,6 @@
 inky
+Pillow
+font_fredoka_one
 requests
 pytz
 xml.etree
