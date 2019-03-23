@@ -12,7 +12,7 @@
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
 * Go to https://alphavantage.co and sign up for your free API key
   * Add your API key to **inkyphat-stockmarket.ini**
-* Add an entry to **/etc/crontab** to update the display every five minutes (when the market is open)
+* Add line to **/etc/crontab** to update the display every five minutes (when the market is open) 
   * `*/5 * * * 1-5 pi nice ~/inkyphat-stockmarket/inkyphat-stockmarket.py > /dev/null 2>&1 &`
 
 ### More Information:
