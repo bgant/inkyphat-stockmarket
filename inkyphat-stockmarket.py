@@ -151,7 +151,7 @@ def draw_date():
     font = ImageFont.truetype(FredokaOne, 11)
     message = latest_trading_day  # Stock's Last Trading Day
     w, h = font.getsize(message)
-    x = 150   # Max 212
+    x = 148   # Max 212
     y = 90    # Max 104
     draw.text((x, y), message, inky_display.BLACK, font)
 
