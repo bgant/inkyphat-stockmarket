@@ -3,7 +3,10 @@
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
 ### How to Use:
-* `sudo apt-get install git python3-pip`
+* `sudo raspi-config`
+  * `5 Interfacing Options --> P4 SPI --> Yes` (enable SPI interface)
+  * `ls /dev/spi*` (should see /dev/spidev0.0  /dev/spidiv0.1)
+* `sudo apt-get install git python3-pip libopenjp2-7 libtiff5`
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
 * `pip3 install -r requirements.txt` (walk away... this is going to take a long time)
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
