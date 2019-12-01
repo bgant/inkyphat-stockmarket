@@ -2,13 +2,15 @@
 
 ![Project Photo](../assets/inkyphat-stockmarket.png)
 
-### How to Use:
+### How to Use:  UPDATED for raspian-buster-lite!!!
 * `sudo raspi-config`
   * `5 Interfacing Options --> P4 SPI --> Yes` (enable SPI interface)
   * `ls /dev/spi*` (should see /dev/spidev0.0  /dev/spidiv0.1)
-* `sudo apt-get install git python3-pip libopenjp2-7 libtiff5`
+* `sudo apt-get install git python3-pip`
 * `git clone https://github.com/bgant/inkyphat-stockmarket`
-* `pip3 install -r requirements.txt` (walk away... this is going to take a long time)
+* `cd inkyphat-stockmarket`
+* `sudo apt-get install python3-rpi.gpio python3-spidev python3-numpy python3-pil python3-tz python3-yaml`
+* `sudo pip3 install -r requirements.txt` 
 * `python3 inkyphat-stockmarket.py` (initializes your own config file)
 * Go to https://alphavantage.co and sign up for your free API key
   * Add your API key to **inkyphat-stockmarket.ini**
