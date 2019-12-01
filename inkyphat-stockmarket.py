@@ -126,7 +126,7 @@ from PIL import Image, ImageFont, ImageDraw
 img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
 draw = ImageDraw.Draw(img)
 
-from font_fredoka_one import FredokaOne
+from fonts.ttf import FredokaOne
 
 
 def draw_price():

@@ -1,2 +1,2 @@
 inky
-font_fredoka_one
+fonts
