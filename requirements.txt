@@ -1,5 +1,2 @@
 inky
-Pillow
 font_fredoka_one
-pytz
-pyyaml
