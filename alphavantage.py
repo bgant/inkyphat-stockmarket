@@ -33,6 +33,7 @@ class lookup:
 
         import requests
         url="https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={apikey}".format(symbol=self.symbol, apikey=apikey)
+        #print(url)
         response = requests.get(url)
         #print(response.text)          # Uncomment to see raw JSON response from server
         self.response = response.json()         # Convert response string data to json data

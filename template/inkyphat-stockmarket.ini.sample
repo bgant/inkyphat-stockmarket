@@ -15,12 +15,12 @@ inky_color = red
 # Sign up for a free API key at http://alphavantage.co and enter it here:
 apikey =
 
-# Common stock symbols:
+# Common stock Indexes (NOTE: AlphaVantage no longer has access to these Indexes):
 #	^DJI  Dow Jones Industrial Average
 #	SPX   S&P 500 Index
 #	NYA   NASDAQ Composite Index
 # Which stock symbol do you want to display?
-symbol = ^DJI
+symbol = DIA
 
 # This is used to check if a particular Stock Exchange is open
 # (more Exchanges can be added to stockmarket.yaml file)

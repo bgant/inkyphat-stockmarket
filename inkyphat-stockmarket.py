@@ -71,6 +71,10 @@ quote = alphavantage.lookup(symbol)
 #import apple_quote
 #quote = apple_quote.lookup(symbol)
 
+data = quote.data()
+if not bool(data):  # Boolean of an empty Dictionary returns False
+    print('ERROR: No data returned for', symbol)
+    sys.exit()
 
 ##########################################################
 ###  Manipulate the string data for Inky display 
@@ -79,7 +83,9 @@ quote = alphavantage.lookup(symbol)
 latest_trading_day = quote.day()
 
 price = quote.price()
-if len(str(price)) >= 8: 
+if symbol == 'DIA':
+    price = str(float(price) * 100)   # Convert DIA price to ^DJI 
+if len(str(price)) >= 7: 
     price = str(round(float(price)))  # Remove decimals on numbers larger than 9999
 
 change_percent = quote.percent()
