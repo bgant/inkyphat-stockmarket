@@ -96,4 +96,4 @@ class exchange:
 if __name__ == "__main__":
     import sys
     print("Is the", sys.argv[1].upper(), "exchange Normally open now?     ", exchange(sys.argv[1]).hours())
-    print("Is the", sys.argv[1].upper(), "exchange REALLY open right now? ", exchange(sys.argv[1]).status())
+    #print("Is the", sys.argv[1].upper(), "exchange REALLY open right now? ", exchange(sys.argv[1]).status())

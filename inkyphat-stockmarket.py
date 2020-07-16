@@ -5,6 +5,7 @@
 # Brandon Gant
 # created: 2018-10-30
 # updated: 2019-03-21 Moved from older 'inkyphat' module to newer 'inky' module
+# updated: 2020-07-16 Replaced alphavantage.co with finnhub.io
 #
 
 import sys
@@ -35,7 +36,7 @@ exchange_hours = config.get('inkyphat_stockmarket', 'exchange_hours')
 apikey         = config.get('inkyphat_stockmarket', 'apikey')
 
 if apikey == '':
-    print('Go to http://alphavantage.co to sign up for a free API key')
+    print('Go to http://finnhub.io to sign up for a free API key')
     sys.exit()
 
 if inky_type.lower() != "phat":
@@ -46,7 +47,7 @@ if inky_type.lower() != "phat":
 
 
 ##########################################################
-###  Update the display only if the Exchange is open?
+###  Update the display only if the Exchange is open
 ##########################################################
 
 if exchange_hours == 'enabled':
@@ -62,17 +63,20 @@ else:
 
 
 ##########################################################
-###  Download the stock data (multiple options)
+###  Download the stock data
 ##########################################################
 
-import alphavantage
-quote = alphavantage.lookup(symbol)
+import finnhub
+quote = finnhub.lookup(symbol)
 
-#import apple_quote
+#import alphavantage  # Unauthorized and losing access to stock data
+#quote = alphavantage.lookup(symbol)
+
+#import apple_quote   # Shutdown by Apple
 #quote = apple_quote.lookup(symbol)
 
 data = quote.data()
-if not bool(data):  # Boolean of an empty Dictionary returns False
+if not bool(data):   # Boolean of an empty Dictionary returns False
     print('ERROR: No data returned for', symbol)
     sys.exit()
 
@@ -84,12 +88,12 @@ latest_trading_day = quote.day()
 
 price = quote.price()
 if symbol == 'DIA':
-    price = str(float(price) * 100)   # Convert DIA price to ^DJI 
+    price = str(float(price) * 100)   # Convert DIA price to DJIA 
 if len(str(price)) >= 7: 
     price = str(round(float(price)))  # Remove decimals on numbers larger than 9999
 
 change_percent = quote.percent()
-change_percent = str(round(float(change_percent[:-1]), 1))  # Strip "%" sign, convert string to float, round to single decimal, convert back to string
+#change_percent = str(round(float(change_percent[:-1]), 1))  # Strip "%" sign, convert string to float, round to single decimal, convert back to string
 
 # Uncomment hard-coded values for testing
 #change_percent = '2.5'

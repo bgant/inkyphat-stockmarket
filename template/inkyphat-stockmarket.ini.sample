@@ -11,14 +11,10 @@ inky_type  = pHAT
 #   'black' is the original two color (Black, White) Inky pHat
 inky_color = red
 
-# AlphaVantage provides free stock market quotes.
-# Sign up for a free API key at http://alphavantage.co and enter it here:
+# Finnhub.io provides free stock market quotes.
+# Sign up for a free API key at https://finnhub.io and enter it here:
 apikey =
 
-# Common stock Indexes (NOTE: AlphaVantage no longer has access to these Indexes):
-#	^DJI  Dow Jones Industrial Average
-#	SPX   S&P 500 Index
-#	NYA   NASDAQ Composite Index
 # Which stock symbol do you want to display?
 symbol = DIA
 
