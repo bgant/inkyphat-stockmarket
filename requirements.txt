@@ -1,3 +1,6 @@
+Pillow
+PyYAML
+pytz
 inky
 fonts
 font-fredoka-one
