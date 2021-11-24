@@ -37,6 +37,7 @@ sudo apt upgrade
 Set Timezone and enable the SPI interface to the Inky pHat:
 ```console
 sudo raspi-config
+    5 Localisation Options --> L2 Timezone --> America/<CITY>
     3 Interface Options --> P4 SPI --> Yes
 ls /dev/spi*   <-- should see /dev/spidev0.0 and /dev/spidev0.1
 ```
