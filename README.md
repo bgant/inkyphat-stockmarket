@@ -32,16 +32,6 @@ sudo apt update
 sudo apt upgrade
 ```
 
-Set Localization Settings:
-```console
-sudo raspi-config
-    5 Localisation Options --> L1 Locale 
-        disable en_GB.UTF-8 UTF-8
-        enable  en_US.UTF-8 UTF-8
-    5 Localisation Options --> L2 Timezone
-        select America/<CITY>
-```
-
 ## Inky pHat Stock Market Setup
 
 Enable the SPI interface to connect to the Inky pHat:
