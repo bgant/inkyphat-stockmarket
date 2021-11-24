@@ -34,7 +34,7 @@ sudo apt upgrade
 
 ## Inky pHat Stock Market Setup
 
-Enable the SPI interface to connect to the Inky pHat:
+Set Timezone and enable the SPI interface to the Inky pHat:
 ```console
 sudo raspi-config
     3 Interface Options --> P4 SPI --> Yes
